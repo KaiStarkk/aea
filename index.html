@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Aea</title>
+    <link rel="stylesheet" 
+          href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body style="background-color: 222222;">
+    <div id="map" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 1280px; height: 720px;"></div>
+ 
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/leaflet.fullscreen.css' rel='stylesheet' />
+
+    <script>
+
+        var southWest = L.latLng(-170, -180),
+        northEast = L.latLng(-47.1,45),
+        bounds = L.latLngBounds(southWest, northEast);
+
+        var map = L.map('map', {maxBounds: bounds}).setView([0,0], 3);
+        L.tileLayer('Aea/{z}/{x}/{y}.png', {
+            minZoom: 3,
+            maxZoom: 7,
+            noWrap: true,
+            attribution: '&copy; K. M. Hannigan',
+            tms: true
+        }).addTo(map);
+
+        L.control.fullscreen().addTo(map);
+
+        map.fitBounds(bounds);
+
+    </script>
+</body>
+</html>
